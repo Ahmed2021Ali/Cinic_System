@@ -41,16 +41,7 @@ class LoginController extends Controller
     }
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
-
+        auth()->logout();
         return $request->wantsJson()
             ? new JsonResponse([], 204)
             : redirect('/');

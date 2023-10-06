@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\back;
 
-use App\Http\trait\media;
 use App\Models\Doctor;
+use App\Http\trait\media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\doctors\DoctorStoreRequest;
 
 class DoctorController extends Controller
@@ -15,18 +16,10 @@ class DoctorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        if (isset($request->id))
-        {
-            $doctor = Doctor::where('major_id', $request->id)->get();
-            return view('backend.doctors.index',compact('doctor'));
-        }
-        else
-        {
-            $doctor = Doctor::get();
-             return view('backend.doctors.index',compact('doctor'));
-        }
+        $doctor = Doctor::get();
+        return view('backend.doctors.index',compact('doctor'));
     }
 
     /**
@@ -48,6 +41,7 @@ class DoctorController extends Controller
         {
             $PhotoName=$this->Upload_image($request->image,'doctors');
             $data['image']=$PhotoName;
+            $data['password']= Hash::make($request->password);
         }
        DB::table('doctors')->insert($data);
        return redirect()->back()->with('success','تم اضافة الدكتور بنجاح');
@@ -58,7 +52,8 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $doctor = Doctor::where('major_id', $id)->get();
+        return view('backend.doctors.index',compact('doctor'));
     }
 
     /**
@@ -83,6 +78,7 @@ class DoctorController extends Controller
             $PhotoName=$this->Upload_image($request->image,'doctors');
             $data['image']=$PhotoName;
         }
+        $data['password']= Hash::make($request->password);
         DB::table('doctors')->where('id', $id)->update($data);
 
         return redirect()->back()->with('success','تم التحديث بنجاح');

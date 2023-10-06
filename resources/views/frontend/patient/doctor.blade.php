@@ -60,10 +60,10 @@
         </div>
 
         <div class="doctors-grid">
-            @foreach ($doctor as $doctor)
+            @foreach ($doctor as $doctors)
                 <div class="card p-2" style="width: 18rem;">
-                    @if (isset($doctor->image))
-                        <img src="{{ url('/images/doctors/' . $doctor->image) }}"
+                    @if (isset($doctors->image))
+                        <img src="{{ url('/images/doctors/' . $doctors->image) }}"
                             class="card-img-top rounded-circle card-image-circle" alt="major">
                     @else
                         <img src="{{ asset('images/doctors/major.jpg') }}"
@@ -71,16 +71,16 @@
                     @endif
 
                     <div class="card-body d-flex flex-column gap-1 justify-content-center">
-                        <h4 class="card-title fw-bold text-center">{{ $doctor->name }}</h4>
-                        <h6 class="card-title fw-bold text-center">{{ $doctor->major->title }}</h6>
-                        <a href="{{ route('booking.create', $doctor->id) }}"
+                        <h4 class="card-title fw-bold text-center">{{ $doctors->name }}</h4>
+                        <h6 class="card-title fw-bold text-center">{{ $doctors->major->title }}</h6>
+                        <a href="{{ route('booking.create', $doctors->id) }}"
                             class="btn btn-outline-primary card-button">حجز موعيد</a>
                     </div>
                 </div>
             @endforeach
         </div>
 
-    <x-navbar/>
+    {{ $doctor->links() }}
     </div>
 
 

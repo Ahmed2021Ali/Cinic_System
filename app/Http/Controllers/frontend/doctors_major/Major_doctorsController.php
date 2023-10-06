@@ -11,7 +11,7 @@ class Major_doctorsController extends Controller
 {
     public function index($id)
     {
-        $doctor = Doctor::where('major_id', $id)->get();
+        $doctor = Doctor::where('major_id', $id)->paginate(8);
        return view('frontend.patient.doctor',compact('doctor'));
     }
 }

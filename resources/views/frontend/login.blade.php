@@ -14,7 +14,7 @@
                 <div class="card-header"></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('Login') }}">
                         @csrf
 
                         <div class="row mb-3">

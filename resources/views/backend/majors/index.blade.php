@@ -21,7 +21,7 @@
                             <td>{{ $detalis->title }}</td>
 
                             <td>
-                                <a href="{{route('doctor.index', $detalis->id)}}" class="btn btn-success">Major doctors</a>
+                                <a href="{{route('doctor.show', $detalis->id)}}" class="btn btn-success">Major doctors</a>
                                 <a href="{{ route('major.edit', $detalis->id) }}" class="btn btn-warning">Edit Major</a>
                                 <form action="{{ route('major.destroy', $detalis->id) }}" method="post"
                                     class="d-inline">

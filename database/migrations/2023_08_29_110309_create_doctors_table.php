@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('phone');
             $table->string('city');
             $table->text('image')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->rememberToken();
             $table->unsignedBigInteger('major_id');
             $table->foreign('major_id')->references('id')->on('majors')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

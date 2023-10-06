@@ -19,19 +19,19 @@ class HomepageController extends Controller
     {
         if(isset($request->city))
         {
-            $doctor = Doctor::where('city',$request->city)->get();
+            $doctor = Doctor::where('city',$request->city)->paginate(8);
             return view('frontend.patient.doctor',compact('doctor'));
         }
         else
         {
-            $doctor = Doctor::all();
+            $doctor = Doctor::paginate(8);
          return view('frontend.patient.doctor',compact('doctor'));
         }
 
     }
     public function Major()
     {
-        $major=Major::all();
+        $major=Major::paginate(8);
        return view('frontend.patient.major',compact('major'));
     }
 

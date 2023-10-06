@@ -73,6 +73,7 @@ $.widget.bridge('uibutton', $.ui.button)
     });
 </script>
 
+
 @yield('js')
 </body>
 
